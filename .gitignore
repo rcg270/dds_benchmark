@@ -1,0 +1,16 @@
+# Ignore build, install, and log directories of the ROS2 workspace
+/build/
+/install/
+/log/
+/logs/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# VSCode settings folder
+.vscode/
+
+# Temporary editor files
+*.swp
+*.tmp
