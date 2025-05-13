@@ -6,15 +6,16 @@ import numpy as np
 import os
 import psutil
 import argparse
-import sys
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy
 
 
 class Talker(Node):
-    def __init__(self, msg_count, frequency):
+    def __init__(self, msg_count, frequency, payload_size):
         super().__init__('dds_talker')
         self.msg_count = msg_count
         self.frequency = frequency
+        self.payload_size = payload_size
+        self.payload = "x" * payload_size
 
         qos_profile = QoSProfile(depth=10)
         qos_profile.reliability = QoSReliabilityPolicy.RELIABLE
@@ -22,15 +23,17 @@ class Talker(Node):
         self.count = 0
         self.process = psutil.Process(os.getpid())
         self.done = False
-        self.get_logger().info(f"Starting talker! {self.frequency}Hz with {self.msg_count}msgs")
-
+        self.get_logger().info(f"Starting talker...\n"
+                               f"{self.frequency}Hz"
+                               f" {self.msg_count}msgs"
+                               f" {self.payload_size}B payload")
         timer_period = 1.0 / self.frequency
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
     def timer_callback(self):
         now_ns = time.time_ns()
         msg = String()
-        msg.data = f"{now_ns}|payload"
+        msg.data = f"{now_ns}|{self.payload}"
         self.pub.publish(msg)
         self.count += 1
         _ = np.fft.fft(np.random.rand(3000))  # simulate load
@@ -49,12 +52,13 @@ class Talker(Node):
 
 def main():
     parser = argparse.ArgumentParser(description='Talker Node Parameters')
-    parser.add_argument('msg_count', type=int, help='Number of messages to send')
-    parser.add_argument('frequency', type=float, help='Publish frequency in Hz')
+    parser.add_argument('msg_count', type=int, default=10, help='Number of messages to send')
+    parser.add_argument('frequency', type=float, default=1, help='Publish frequency in Hz')
+    parser.add_argument('payload_size', type=int, default=1, help='Size of the payload in bytes')
     args = parser.parse_args()
 
     rclpy.init()
-    node = Talker(args.msg_count, args.frequency)
+    node = Talker(args.msg_count, args.frequency, args.payload_size)
     while rclpy.ok() and not node.done:
         rclpy.spin_once(node)
     node.destroy_node()

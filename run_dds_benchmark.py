@@ -18,8 +18,10 @@ rmw_implementations = [
 
 
 # Parameters for the talker and listener
-msg_count = 100  # Number of messages to send
-frequency_hz = 1  # Publish frequency in Hz
+msg_count = 1000  # Number of messages to send
+frequency_hz = 100  # Publish frequency in Hz
+payload_size = 1000000  # Size of the payload in bytes
+timeout = 10  # Timeout in seconds
 
 
 def log_resource_usage(pid, output_file, duration=60):
@@ -52,17 +54,19 @@ def run_with_rmw(rmw_impl):
     os.makedirs(log_dir, exist_ok=True)
 
     talker_proc = subprocess.Popen(
-        "ros2 run dds_benchmark dds_talker {msg_count} {frequency_hz}".format(
+        "ros2 run dds_benchmark dds_talker {msg_count} {frequency_hz} {payload_size}".format(
             msg_count=msg_count,
-            frequency_hz=frequency_hz
+            frequency_hz=frequency_hz,
+            payload_size=payload_size
         ),
         shell=True,
         stdout=open(f"{log_dir}/talker.txt", "w"),
         stderr=subprocess.STDOUT
     )
     listener_proc = subprocess.Popen(
-        "ros2 run dds_benchmark dds_listener {msg_count}".format(
-            msg_count=msg_count
+        "ros2 run dds_benchmark dds_listener {msg_count} {timeout}".format(
+            msg_count=msg_count,
+            timeout=timeout
         ),
         shell=True,
         stdout=open(f"{log_dir}/listener.txt", "w"),
