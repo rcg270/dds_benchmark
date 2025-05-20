@@ -5,7 +5,6 @@ import time
 import numpy as np
 import psutil
 import os
-from threading import Timer
 from std_msgs.msg import Header  # Adjust based on your message type
 
 
@@ -21,7 +20,7 @@ class ROS2Monitor(Node):
         self.count = 0
         self.process = psutil.Process(os.getpid())
 
-        # QoS profile for reliable communication
+        # QoS profile
         from rclpy.qos import QoSProfile, QoSReliabilityPolicy
         qos_profile = QoSProfile(depth=10, reliability=QoSReliabilityPolicy.RELIABLE)
 
@@ -48,7 +47,7 @@ class ROS2Monitor(Node):
         # Record message size (approximate)
         try:
             self.msg_sizes.append(len(msg_to_bytes(msg)))  # Need custom serialization
-        except:
+        except Exception:
             pass
 
         # Check if duration has elapsed
