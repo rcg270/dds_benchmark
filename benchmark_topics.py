@@ -17,14 +17,16 @@ TOPICS_TO_TEST = [
     ("/robot/camera/color/image_raw", "sensor_msgs/msg/Image"),
     ("/robot/lidar/points", "sensor_msgs/msg/PointCloud2"),
     ("/robot/odom", "nav_msgs/msg/Odometry"),
+    ("/autopilot/lidar/points_filtered", "sensor_msgs/msg/PointCloud2"),
+    ("/autopilot/lidar/scan_filtered", "sensor_msgs/msg/LaserScan"),
+    ("/robot/joint_states", "sensor_msgs/msg/JointState"),
+    ("/tf", "tf2_msgs/msg/TFMessage"),
     # Medium-frequency control data
     ("/robot/cmd_vel", "geometry_msgs/msg/Twist"),
-    ("/autopilot/plan_twist", "autonomy_msgs/msg/Path"),
     # Low-frequency but critical data
     ("/robot/battery/info", "origin_msgs/msg/BatteryInfo"),
     ("/autopilot/estimated_pose", "geometry_msgs/msg/PoseWithCovarianceStamped")
 ]
-
 
 def setup_logging(rmw_impl, topic_name):
     """Create log directory structure"""
@@ -33,7 +35,6 @@ def setup_logging(rmw_impl, topic_name):
     log_dir = os.path.join(LOG_DIR, rmw_impl, safe_topic_name, timestamp)
     os.makedirs(log_dir, exist_ok=True)
     return log_dir
-
 
 def run_monitor(rmw_impl, topic_name, msg_type, duration):
     """Run the monitoring process for a specific topic"""
@@ -58,7 +59,6 @@ def run_monitor(rmw_impl, topic_name, msg_type, duration):
             stderr=subprocess.STDOUT
         )
         return process, log_file
-
 
 def main():
     # Create main log directory
@@ -102,7 +102,6 @@ def main():
             print(f"Timeout expired waiting for monitor of {topic} with {rmw_impl}")
 
     print("\nAll tests completed! Results saved to 'logs/' directory")
-
 
 if __name__ == "__main__":
     main()
