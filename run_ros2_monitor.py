@@ -30,6 +30,8 @@ class ROS2Monitor(Node):
         self.count = 0
         self.process = psutil.Process(os.getpid())
         self.msg_type = None
+        self.first_msg_time = None
+        self.first_recv_time = None
 
         # QoS profile
         qos_profile = QoSProfile(depth=10, reliability=QoSReliabilityPolicy.RELIABLE)
@@ -65,10 +67,21 @@ class ROS2Monitor(Node):
         if hasattr(msg, 'header') and isinstance(msg.header, Header):
             msg_time_sec = msg.header.stamp.sec
             msg_time_nanosec = msg.header.stamp.nanosec
-            msg_time = msg_time_sec + msg_time_nanosec / 1e9
-            latency = now - msg_time
-            self.latencies.append(latency)
-            self.get_logger().info(f"Topic: {self.topic_name}, Msg Time: {msg_time:.6f}, Recv Time: {now:.6f}, Raw Latency: {latency:.6f}")
+            msg_time_ros = msg_time_sec + msg_time_nanosec / 1e9
+
+            if self.first_msg_time is None:
+                self.first_msg_time = msg_time_ros
+                self.first_recv_time = now
+
+            if self.first_msg_time is not None:
+                relative_msg_time = msg_time_ros - self.first_msg_time
+                relative_recv_time = now - self.first_recv_time
+                latency = relative_recv_time - relative_msg_time
+                self.latencies.append(latency)
+                self.get_logger().info(
+                    f"Topic: {self.topic_name}, Relative Msg Time: {relative_msg_time:.6f}, "
+                    f"Relative Recv Time: {relative_recv_time:.6f}, Relative Latency: {latency:.6f}"
+                )
         elif hasattr(msg, 'header'):
             self.get_logger().warn(f"Topic: {self.topic_name} has a header but not of type std_msgs.msg.Header.")
 
