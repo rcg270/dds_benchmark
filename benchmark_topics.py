@@ -44,7 +44,7 @@ def run_monitor(rmw_impl, topic_name, msg_type, duration):
     log_file = os.path.join(log_dir, "monitor_output.log")
 
     cmd = [
-        "python3", "run_ros2_monitor.py",
+        "python3", "run_test_comp.py",
         topic_name,
         "--duration", str(duration),
         "--msg-type", msg_type
