@@ -9,7 +9,8 @@ from datetime import datetime
 import argparse
 
 # Configuration
-RMW_IMPLEMENTATIONS = ["rmw_fastrtps_cpp", "rmw_cyclonedds_cpp", "rmw_zenoh_cpp"]
+RMW_IMPLEMENTATIONS = ["rmw_fastrtps_cpp", "rmw_cyclonedds_cpp"]
+# Potential implementations: "rmw_zenoh_cpp", "rmw_connext_cpp", "rmw_gurumdds_cpp"
 LOG_DIR = "logs"
 # Selected topics with their types
 TOPICS_TO_TEST = [

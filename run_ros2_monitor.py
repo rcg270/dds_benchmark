@@ -78,10 +78,6 @@ class ROS2Monitor(Node):
                 relative_recv_time = now - self.first_recv_time
                 latency = relative_recv_time - relative_msg_time
                 self.latencies.append(latency)
-                self.get_logger().info(
-                    f"Topic: {self.topic_name}, Relative Msg Time: {relative_msg_time:.6f}, "
-                    f"Relative Recv Time: {relative_recv_time:.6f}, Relative Latency: {latency:.6f}"
-                )
         elif hasattr(msg, 'header'):
             self.get_logger().warn(f"Topic: {self.topic_name} has a header but not of type std_msgs.msg.Header.")
 
