@@ -1,0 +1,31 @@
+[INFO] [1747658515.633205209] [ros2_monitor]: Monitoring /robot/odom for 30.0 seconds...
+[INFO] [1747658516.609421936] [ros2_monitor]: [Interim] Msgs: 24 | Rate: 22.22 Hz | CPU: 0.0% | MEM: 60.30 MB
+[INFO] [1747658517.609705781] [ros2_monitor]: [Interim] Msgs: 49 | Rate: 23.55 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658518.609611688] [ros2_monitor]: [Interim] Msgs: 74 | Rate: 24.02 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658519.609708949] [ros2_monitor]: [Interim] Msgs: 99 | Rate: 24.26 Hz | CPU: 5.0% | MEM: 60.30 MB
+[INFO] [1747658520.609414354] [ros2_monitor]: [Interim] Msgs: 124 | Rate: 24.41 Hz | CPU: 7.0% | MEM: 60.30 MB
+[INFO] [1747658521.609624686] [ros2_monitor]: [Interim] Msgs: 149 | Rate: 24.51 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658522.609706495] [ros2_monitor]: [Interim] Msgs: 174 | Rate: 24.57 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658523.609676068] [ros2_monitor]: [Interim] Msgs: 199 | Rate: 24.63 Hz | CPU: 5.0% | MEM: 60.30 MB
+[INFO] [1747658524.609724193] [ros2_monitor]: [Interim] Msgs: 224 | Rate: 24.67 Hz | CPU: 7.0% | MEM: 60.30 MB
+[INFO] [1747658525.609745109] [ros2_monitor]: [Interim] Msgs: 249 | Rate: 24.70 Hz | CPU: 5.0% | MEM: 60.30 MB
+[INFO] [1747658526.609688221] [ros2_monitor]: [Interim] Msgs: 274 | Rate: 24.73 Hz | CPU: 7.0% | MEM: 60.30 MB
+[INFO] [1747658527.609720829] [ros2_monitor]: [Interim] Msgs: 299 | Rate: 24.75 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658528.609674771] [ros2_monitor]: [Interim] Msgs: 324 | Rate: 24.77 Hz | CPU: 5.0% | MEM: 60.30 MB
+[INFO] [1747658529.609637920] [ros2_monitor]: [Interim] Msgs: 349 | Rate: 24.79 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658530.609804839] [ros2_monitor]: [Interim] Msgs: 374 | Rate: 24.80 Hz | CPU: 7.0% | MEM: 60.30 MB
+[INFO] [1747658531.609745728] [ros2_monitor]: [Interim] Msgs: 399 | Rate: 24.81 Hz | CPU: 5.0% | MEM: 60.30 MB
+[INFO] [1747658532.609695441] [ros2_monitor]: [Interim] Msgs: 424 | Rate: 24.82 Hz | CPU: 7.0% | MEM: 60.30 MB
+[INFO] [1747658533.609692313] [ros2_monitor]: [Interim] Msgs: 449 | Rate: 24.83 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658534.610167553] [ros2_monitor]: [Interim] Msgs: 474 | Rate: 24.84 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658535.609642028] [ros2_monitor]: [Interim] Msgs: 499 | Rate: 24.85 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658536.609630616] [ros2_monitor]: [Interim] Msgs: 524 | Rate: 24.86 Hz | CPU: 5.0% | MEM: 60.30 MB
+[INFO] [1747658537.609715741] [ros2_monitor]: [Interim] Msgs: 549 | Rate: 24.86 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658538.609611381] [ros2_monitor]: [Interim] Msgs: 574 | Rate: 24.87 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658539.609651366] [ros2_monitor]: [Interim] Msgs: 599 | Rate: 24.88 Hz | CPU: 5.0% | MEM: 60.30 MB
+[INFO] [1747658540.609660078] [ros2_monitor]: [Interim] Msgs: 624 | Rate: 24.88 Hz | CPU: 7.0% | MEM: 60.30 MB
+[INFO] [1747658541.617848715] [ros2_monitor]: [Interim] Msgs: 649 | Rate: 24.88 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658542.609655330] [ros2_monitor]: [Interim] Msgs: 674 | Rate: 24.89 Hz | CPU: 5.0% | MEM: 60.30 MB
+[INFO] [1747658543.609640814] [ros2_monitor]: [Interim] Msgs: 699 | Rate: 24.89 Hz | CPU: 5.0% | MEM: 60.30 MB
+[INFO] [1747658544.609702194] [ros2_monitor]: [Interim] Msgs: 724 | Rate: 24.90 Hz | CPU: 6.0% | MEM: 60.30 MB
+[INFO] [1747658545.536534188] [ros2_monitor]: [Final] Samples: 748 | Avg: -123467.969 ms | Min: -123469.241 ms | Max: -123463.520 ms | Std: 0.506 ms | Throughput: 24.928 msg/s | Bandwidth: 0.000 MB/s | Duration: 30.006 s

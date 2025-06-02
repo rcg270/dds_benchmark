@@ -1,0 +1,94 @@
+[INFO] [1747745098.637792480] [ros2_monitor]: Monitoring /robot/odom for 30.0 seconds...
+[INFO] [1747745099.616642528] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.55 MB
+[INFO] [1747745100.616614144] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745101.617209344] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745102.617222912] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745103.617392672] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745104.617044768] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745105.617364832] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745106.617897376] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745107.625311616] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745108.617173792] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 2.0% | MEM: 51.81 MB
+[INFO] [1747745109.617106144] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745110.617883744] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745111.616962528] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 2.0% | MEM: 51.81 MB
+[INFO] [1747745112.617106592] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745113.616823840] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745114.616868768] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745115.616964800] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745116.617322656] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745117.616545248] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745118.616642272] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745119.616659584] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745120.616736480] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745121.616887840] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745122.616416480] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745123.616576256] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745124.616488352] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745125.616880832] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745126.616945312] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745127.616316672] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745128.616504768] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745129.616631328] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745130.616205184] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745131.616219040] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745132.616197184] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745133.616596896] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745134.616385888] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745135.615800000] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745136.615849696] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745137.616124832] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745138.616523968] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745139.616166784] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745140.616961728] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745141.616618528] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745142.616665408] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745143.616400416] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745144.616425024] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745145.616296224] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745146.615921280] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745147.616384640] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745148.616670208] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745149.616586528] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745150.616716448] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745151.616003680] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745152.616221344] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745153.616257760] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745154.616347936] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745155.616332672] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745156.616439296] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745157.616048960] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745158.617468800] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745159.616452000] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745160.617847968] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+[INFO] [1747745161.617535872] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 0.0% | MEM: 51.81 MB
+[INFO] [1747745162.617546368] [ros2_monitor]: [Interim] Msgs: 0 | Rate: 0.00 Hz | CPU: 1.0% | MEM: 51.81 MB
+Traceback (most recent call last):
+  File "/home/lab/dds_benchmark/run_ros2_monitor.py", line 156, in main
+    rclpy.spin(monitor)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 624, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lab/dds_benchmark/run_ros2_monitor.py", line 165, in <module>
+    main()
+  File "/home/lab/dds_benchmark/run_ros2_monitor.py", line 161, in main
+    rclpy.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+    return context.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
