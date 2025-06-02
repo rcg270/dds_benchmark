@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import BatteryInfo
 import argparse
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy
+
 
 class MinimalMonitor(Node):
     def __init__(self, topic_name, msg_type_str, duration):
@@ -44,6 +44,7 @@ class MinimalMonitor(Node):
             self.get_logger().info(f'Received {self.count} messages in {self.duration} seconds.')
             raise KeyboardInterrupt
 
+
 def main(args=None):
     rclpy.init(args=args)
     parser = argparse.ArgumentParser(description='Minimal ROS 2 Topic Monitor')
@@ -60,6 +61,7 @@ def main(args=None):
     finally:
         minimal_monitor.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

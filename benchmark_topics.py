@@ -98,14 +98,15 @@ def main():
             print(f"\nTesting {topic} ({msg_type}) with {rmw_impl} for {test_duration} seconds...")
             process, log_file = run_monitor(rmw_impl, topic, msg_type, test_duration)
             processes.append((process, topic, rmw_impl, log_file))
-            time.sleep(1) # Small delay before starting the next
+            time.sleep(1)  # Small delay before starting the next
 
     # Wait for all monitor processes to complete
     for process, topic, rmw_impl, log_file in processes:
         try:
             process.wait(timeout=test_duration + 15)
             if process.returncode != 0:
-                print(f"Monitor for {topic} with {rmw_impl} exited with code: {process.returncode}. Check {log_file} for details.")
+                print(f"Monitor for {topic} with {rmw_impl} exited with code: {process.returncode}."
+                      f"Check {log_file} for details.")
         except subprocess.TimeoutExpired:
             process.terminate()
             print(f"Timeout expired waiting for monitor of {topic} with {rmw_impl}")
