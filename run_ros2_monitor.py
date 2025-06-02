@@ -5,7 +5,7 @@ import time
 import numpy as np
 import psutil
 import os
-from std_msgs.msg import Header  # Adjust based on your message type
+from std_msgs.msg import Header
 from importlib import import_module
 import argparse
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy
@@ -62,10 +62,15 @@ class ROS2Monitor(Node):
         now = time.time()
         self.count += 1
 
-        # Calculate latency if message has a header with timestamp
-        if hasattr(msg, 'header') and isinstance(msg.header, Header):
-            msg_time = msg.header.stamp.sec + msg.header.stamp.nanosec / 1e9
-            self.latencies.append(now - msg_time)
+        # Calculate latency if message has a header with a timestamp
+        if hasattr(msg, 'header'):
+            if isinstance(msg.header, Header):
+                msg_time = msg.header.stamp.sec + msg.header.stamp.nanosec / 1e9
+                latency = now - msg_time
+                self.latencies.append(latency)
+            # Optionally log if a header exists but is not std_msgs/Header
+            # elif hasattr(msg.header, 'stamp'):
+            #     self.get_logger().warn(f"Header found on {self.topic_name} but not std_msgs.Header.")
 
         # Record message size (approximate)
         try:
