@@ -62,23 +62,21 @@ class ROS2Monitor(Node):
         now = time.time()
         self.count += 1
 
-        # Calculate latency if message has a header with a timestamp
-        if hasattr(msg, 'header'):
-            if isinstance(msg.header, Header):
-                msg_time = msg.header.stamp.sec + msg.header.stamp.nanosec / 1e9
-                latency = now - msg_time
-                self.latencies.append(latency)
-            # Optionally log if a header exists but is not std_msgs/Header
-            # elif hasattr(msg.header, 'stamp'):
-            #     self.get_logger().warn(f"Header found on {self.topic_name} but not std_msgs.Header.")
+        if hasattr(msg, 'header') and isinstance(msg.header, Header):
+            msg_time_sec = msg.header.stamp.sec
+            msg_time_nanosec = msg.header.stamp.nanosec
+            msg_time = msg_time_sec + msg_time_nanosec / 1e9
+            latency = now - msg_time
+            self.latencies.append(latency)
+            self.get_logger().debug(f"Topic: {self.topic_name}, Msg Time: {msg_time:.6f}, Recv Time: {now:.6f}, Raw Latency: {latency:.6f}")
+        elif hasattr(msg, 'header'):
+            self.get_logger().warn(f"Topic: {self.topic_name} has a header but not of type std_msgs.msg.Header.")
 
-        # Record message size (approximate)
         try:
             self.msg_sizes.append(msg_to_bytes(msg))
         except Exception as e:
-            self.get_logger().warn(f"Error getting message size: {e}")
+            self.get_logger().warn(f"Error getting message size for {self.topic_name}: {e}")
 
-        # Check if duration has elapsed
         if time.time() > self.end_time:
             self.final_report()
             raise KeyboardInterrupt  # Graceful exit
@@ -98,10 +96,8 @@ class ROS2Monitor(Node):
         elapsed = time.time() - self.start_time
         hz = self.count / elapsed if elapsed > 0 else 0
 
-        # Calculate bandwidth if we captured message sizes
         bw = (sum(self.msg_sizes) / (1024 * 1024)) / elapsed if self.msg_sizes and elapsed > 0 else 0
 
-        # Latency statistics
         latencies_ms = np.array(self.latencies) * 1000  # convert to milliseconds
         latency_stats = {
             'avg': np.mean(latencies_ms) if self.latencies else 0,
@@ -121,7 +117,6 @@ class ROS2Monitor(Node):
             f"Duration: {elapsed:.3f} s"
         )
 
-        # Log to CSV
         self.log_to_csv(elapsed, hz, bw, latency_stats)
 
     def log_to_csv(self, duration, hz, bw, latency_stats):
