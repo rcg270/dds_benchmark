@@ -7,7 +7,6 @@ import subprocess
 import time
 from datetime import datetime
 
-
 # Configuration
 TEST_DURATION = 10  # seconds per test
 RMW_IMPLEMENTATIONS = ["rmw_fastrtps_cpp", "rmw_cyclonedds_cpp", "rmw_zenoh_cpp"]
@@ -20,9 +19,9 @@ TOPICS_TO_TEST = [
     ("/robot/odom", "nav_msgs/msg/Odometry"),
     # Medium-frequency control data
     ("/robot/cmd_vel", "geometry_msgs/msg/Twist"),
-    ("/autopilot/plan_twist", "geometry_msgs/msg/Twist"),
+    ("/autopilot/plan_twist", "autonomy_msgs/msg/Path"),
     # Low-frequency but critical data
-    ("/robot/battery/info", "sensor_msgs/msg/BatteryState"),
+    ("/robot/battery/info", "origin_msgs/msg/BatteryInfo"),
     ("/autopilot/estimated_pose", "geometry_msgs/msg/PoseWithCovarianceStamped")
 ]
 
@@ -39,7 +38,7 @@ def setup_logging(rmw_impl, topic_name):
 def run_monitor(rmw_impl, topic_name, msg_type, duration):
     """Run the monitoring process for a specific topic"""
     log_dir = setup_logging(rmw_impl, topic_name)
-    log_file = os.path.join(log_dir, "monitor_output.log") # Separate log for the monitor's stdout/stderr
+    log_file = os.path.join(log_dir, "monitor_output.log")
 
     cmd = [
         "python3", "run_ros2_monitor.py",
@@ -58,18 +57,13 @@ def run_monitor(rmw_impl, topic_name, msg_type, duration):
             stdout=f,
             stderr=subprocess.STDOUT
         )
-        try:
-            process.wait(timeout=duration + 10)  # Increased timeout
-            if process.returncode != 0:
-                print(f"Monitor for {topic_name} with {rmw_impl} exited with code: {process.returncode}. Check {log_file} for details.")
-        except subprocess.TimeoutExpired:
-            process.terminate()
-            print(f"Timeout expired for monitor of {topic_name} with {rmw_impl}")
+        return process, log_file
 
 
 def main():
     # Create main log directory
     os.makedirs(LOG_DIR, exist_ok=True)
+    processes = []
 
     # Run tests for each RMW implementation
     for rmw_impl in RMW_IMPLEMENTATIONS:
@@ -81,7 +75,7 @@ def main():
                 env={**os.environ, "RMW_IMPLEMENTATION": rmw_impl},
                 check=True,
                 capture_output=True,
-                timeout=10  # Add a timeout to doctor command
+                timeout=10
             )
         except subprocess.CalledProcessError as e:
             print(f"Skipping {rmw_impl} - not properly installed or configured.\n{e.stderr.decode()}")
@@ -93,8 +87,19 @@ def main():
         # Test each selected topic
         for topic, msg_type in TOPICS_TO_TEST:
             print(f"\nTesting {topic} ({msg_type}) with {rmw_impl}...")
-            run_monitor(rmw_impl, topic, msg_type, TEST_DURATION)
-            time.sleep(2)  # Brief pause between tests
+            process, log_file = run_monitor(rmw_impl, topic, msg_type, TEST_DURATION)
+            processes.append((process, topic, rmw_impl, log_file))
+            time.sleep(1) # Small delay before starting the next
+
+    # Wait for all monitor processes to complete
+    for process, topic, rmw_impl, log_file in processes:
+        try:
+            process.wait(timeout=TEST_DURATION + 15)
+            if process.returncode != 0:
+                print(f"Monitor for {topic} with {rmw_impl} exited with code: {process.returncode}. Check {log_file} for details.")
+        except subprocess.TimeoutExpired:
+            process.terminate()
+            print(f"Timeout expired waiting for monitor of {topic} with {rmw_impl}")
 
     print("\nAll tests completed! Results saved to 'logs/' directory")
 
