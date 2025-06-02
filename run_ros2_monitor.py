@@ -6,33 +6,57 @@ import numpy as np
 import psutil
 import os
 from std_msgs.msg import Header  # Adjust based on your message type
+from importlib import import_module
+import argparse
+from rclpy.qos import QoSProfile, QoSReliabilityPolicy
+
+
+def msg_to_bytes(msg):
+    """Helper function to estimate message size"""
+    from rclpy.serialization import serialize_message
+    return len(serialize_message(msg))
 
 
 class ROS2Monitor(Node):
-    def __init__(self, topic_name, msg_type, duration=10):
+    def __init__(self, topic_name, msg_type_str, duration):
         super().__init__('ros2_monitor')
         self.topic_name = topic_name
-        self.duration = duration
+        self.duration = float(duration)
+        self.msg_type_str = msg_type_str
         self.start_time = time.time()
-        self.end_time = self.start_time + duration
+        self.end_time = self.start_time + self.duration
         self.latencies = []
         self.msg_sizes = []
         self.count = 0
         self.process = psutil.Process(os.getpid())
+        self.msg_type = None
 
         # QoS profile
-        from rclpy.qos import QoSProfile, QoSReliabilityPolicy
         qos_profile = QoSProfile(depth=10, reliability=QoSReliabilityPolicy.RELIABLE)
 
-        self.subscription = self.create_subscription(
-            msg_type,
-            topic_name,
-            self.callback,
-            qos_profile)
+        try:
+            pkg, msg = self.msg_type_str.split('/msg/')
+            module = import_module(f'{pkg}.msg')
+            self.msg_type = getattr(module, msg)
+            self.subscription = self.create_subscription(
+                self.msg_type,
+                self.topic_name,
+                self.callback,
+                qos_profile)
+            self.get_logger().info(f"Monitoring '{topic_name}' (type: '{self.msg_type_str}') for {duration} seconds...")
+            self.get_logger().info(f"Subscription created for topic '{topic_name}' with message type '{self.msg_type_str}'.")
+        except ImportError as e:
+            self.get_logger().error(f"Could not import message type '{self.msg_type_str}': {e}")
+            exit(1)
+        except AttributeError as e:
+            self.get_logger().error(f"Message type '{msg}' not found in package '{pkg}': {e}")
+            exit(1)
+        except ValueError as e:
+            self.get_logger().error(f"Invalid message type format '{self.msg_type_str}': {e}. Expected package/msg/MessageType")
+            exit(1)
 
         # Periodic reporting
         self.timer = self.create_timer(1.0, self.periodic_report)
-        self.get_logger().info(f"Monitoring {topic_name} for {duration} seconds...")
 
     def callback(self, msg):
         now = time.time()
@@ -41,14 +65,13 @@ class ROS2Monitor(Node):
         # Calculate latency if message has a header with timestamp
         if hasattr(msg, 'header') and isinstance(msg.header, Header):
             msg_time = msg.header.stamp.sec + msg.header.stamp.nanosec / 1e9
-            latency = now - msg_time
-            self.latencies.append(latency)
+            self.latencies.append(now - msg_time)
 
         # Record message size (approximate)
         try:
-            self.msg_sizes.append(len(msg_to_bytes(msg)))  # Need custom serialization
-        except Exception:
-            pass
+            self.msg_sizes.append(msg_to_bytes(msg))
+        except Exception as e:
+            self.get_logger().warn(f"Error getting message size: {e}")
 
         # Check if duration has elapsed
         if time.time() > self.end_time:
@@ -84,10 +107,10 @@ class ROS2Monitor(Node):
 
         self.get_logger().info(
             f"[Final] Samples: {self.count} | "
-            f"Avg: {latency_stats['avg']:.3f} ms | "
-            f"Min: {latency_stats['min']:.3f} ms | "
-            f"Max: {latency_stats['max']:.3f} ms | "
-            f"Std: {latency_stats['std']:.3f} ms | "
+            f"Avg Latency: {latency_stats['avg']:.3f} ms | "
+            f"Min Latency: {latency_stats['min']:.3f} ms | "
+            f"Max Latency: {latency_stats['max']:.3f} ms | "
+            f"Std Latency: {latency_stats['std']:.3f} ms | "
             f"Throughput: {hz:.3f} msg/s | "
             f"Bandwidth: {bw:.3f} MB/s | "
             f"Duration: {elapsed:.3f} s"
@@ -98,7 +121,7 @@ class ROS2Monitor(Node):
 
     def log_to_csv(self, duration, hz, bw, latency_stats):
         import csv
-        csv_file = 'ros2_monitor_log.csv'
+        csv_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ros2_monitor_log.csv')
         file_exists = os.path.isfile(csv_file)
 
         with open(csv_file, 'a', newline='') as f:
@@ -129,30 +152,16 @@ class ROS2Monitor(Node):
             ])
 
 
-def msg_to_bytes(msg):
-    """Helper function to estimate message size"""
-    from rclpy.serialization import serialize_message
-    return len(serialize_message(msg))
-
-
-def main():
-    import argparse
+def main(args=None):
+    rclpy.init(args=args)
     parser = argparse.ArgumentParser(description='ROS 2 Topic Monitor')
     parser.add_argument('topic', help='Topic name to monitor')
     parser.add_argument('--duration', type=float, default=10.0, help='Monitoring duration in seconds')
-    parser.add_argument('--msg-type', default='sensor_msgs/msg/Image', help='Message type')
+    parser.add_argument('--msg-type', required=True, help='Message type (e.g., sensor_msgs/msg/Image)')
     args = parser.parse_args()
 
-    rclpy.init()
-
-    # Dynamically import the message type
-    from importlib import import_module
-    pkg, msg = args.msg_type.split('/msg/')
-    module = import_module(f'{pkg}.msg')
-    msg_type = getattr(module, msg)
-
     try:
-        monitor = ROS2Monitor(args.topic, msg_type, args.duration)
+        monitor = ROS2Monitor(args.topic, args.msg_type, args.duration)
         rclpy.spin(monitor)
     except KeyboardInterrupt:
         pass
