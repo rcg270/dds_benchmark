@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+"""
+This script logs sensor data from specified ROS topics into JSONL files.
+For extra information.
+"""
+
 import rclpy
 from rclpy.node import Node
 import os
@@ -7,7 +13,6 @@ from datetime import datetime
 from threading import Timer
 import numpy as np
 
-# Configure these
 TOPICS_TO_LOG = [
     ('/robot/lidar/points', 'sensor_msgs/msg/PointCloud2'),
     ('/robot/camera/depth/image_rect_raw/compressedDepth', 'sensor_msgs/msg/CompressedImage'),
@@ -17,7 +22,7 @@ TOPICS_TO_LOG = [
     ('/robot/camera/depth/camera_info', 'sensor_msgs/msg/CameraInfo'),
     ('/robot/camera/color/image_raw', 'sensor_msgs/msg/Image')
 ]
-LOG_DURATION = 60  # seconds
+LOG_DURATION = 60
 OUTPUT_DIR = "sensor_logs"
 
 
@@ -26,7 +31,6 @@ class SensorLogger(Node):
         super().__init__('sensor_logger')
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-        # Create log files for each topic
         self.log_files = {}
         for topic, msg_type in TOPICS_TO_LOG:
             safe_name = topic.replace('/', '_')[1:]
@@ -35,7 +39,6 @@ class SensorLogger(Node):
                 'w'
             )
 
-            # Dynamically create subscribers
             self.create_subscription(
                 self.get_message_class(msg_type),
                 topic,
@@ -43,7 +46,6 @@ class SensorLogger(Node):
                 10
             )
 
-        # Set timer to stop logging
         Timer(LOG_DURATION, self.stop_logging).start()
         self.get_logger().info(f"Logging started for {LOG_DURATION} seconds...")
 

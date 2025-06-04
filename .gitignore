@@ -3,6 +3,10 @@
 /install/
 /log/
 /logs/
+/ethernet_logs/
+/wifi_logs/
+/plots_ethernet/
+/plots_wifi/
 
 # Python cache files
 __pycache__/
