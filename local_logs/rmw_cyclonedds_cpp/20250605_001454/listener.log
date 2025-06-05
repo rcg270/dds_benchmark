@@ -1,0 +1,13 @@
+[INFO] [1749075295.250234107] [dds_listener]: Starting listener...
+[INFO] [1749075296.238463510] [dds_listener]: [100] CPU: 99.40% | MEM: 55.08 MB
+[INFO] [1749075297.240319244] [dds_listener]: [200] CPU: 0.00% | MEM: 55.18 MB
+[INFO] [1749075298.258555478] [dds_listener]: [300] CPU: 158.70% | MEM: 55.23 MB
+[INFO] [1749075299.277665562] [dds_listener]: [400] CPU: 0.00% | MEM: 55.26 MB
+[INFO] [1749075300.277611569] [dds_listener]: [500] CPU: 0.00% | MEM: 55.29 MB
+[INFO] [1749075301.278364507] [dds_listener]: [600] CPU: 199.10% | MEM: 55.44 MB
+[INFO] [1749075302.277902663] [dds_listener]: [700] CPU: 0.00% | MEM: 55.46 MB
+[INFO] [1749075303.277991843] [dds_listener]: [800] CPU: 0.00% | MEM: 55.47 MB
+[INFO] [1749075304.278141198] [dds_listener]: [900] CPU: 0.00% | MEM: 55.48 MB
+[INFO] [1749075315.304334656] [dds_listener]: Timeout reached, stopping listener.
+[INFO] [1749075315.305245137] [dds_listener]: Samples: 996 | Avg: 6.378 ms | Min: 2.978 ms | Max: 98.298 ms | Std: 11.254 ms | Throughput: 99.664 msg/s | Dropped: 4 | Drop rate: 0.400% | Duration: 9.994 s
+[INFO] [1749075315.305977844] [dds_listener]: Listener finished.

@@ -1,0 +1,15 @@
+[INFO] [1749075343.073213733] [dds_talker]: Starting talker...
+100.0Hz 1000msgs 1000000B payload
+[INFO] [1749075344.079638440] [dds_talker]: [100] CPU: 0.00% | MEM: 86.93 MB
+[INFO] [1749075345.075613421] [dds_talker]: [200] CPU: 21.10% | MEM: 86.93 MB
+[INFO] [1749075346.076515046] [dds_talker]: [300] CPU: 20.00% | MEM: 79.28 MB
+[INFO] [1749075347.076787615] [dds_talker]: [400] CPU: 23.00% | MEM: 86.91 MB
+[INFO] [1749075348.076189789] [dds_talker]: [500] CPU: 19.00% | MEM: 86.91 MB
+[INFO] [1749075349.077892927] [dds_talker]: [600] CPU: 26.00% | MEM: 86.91 MB
+[INFO] [1749075350.077405688] [dds_talker]: [700] CPU: 32.00% | MEM: 86.91 MB
+[INFO] [1749075351.077791924] [dds_talker]: [800] CPU: 32.00% | MEM: 86.91 MB
+[INFO] [1749075352.078150660] [dds_talker]: [900] CPU: 38.00% | MEM: 79.26 MB
+[INFO] [1749075353.078466319] [dds_talker]: [1000] CPU: 35.00% | MEM: 86.76 MB
+[INFO] [1749075353.080373913] [dds_talker]: Sent 1000 messages.
+RTI Connext DDS Non-commercial license is for academic, research, evaluation and personal use only. USE FOR COMMERCIAL PURPOSES IS PROHIBITED. See RTI_LICENSE.TXT for terms. Download free tools at rti.com/ncl. License issued to Non-Commercial User license@rti.com For non-production use only.
+Expires on 00-jan-00 See www.rti.com for more information.

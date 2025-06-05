@@ -5,8 +5,10 @@
 /logs/
 /ethernet_logs/
 /wifi_logs/
+/local_logs/
 /plots_ethernet/
 /plots_wifi/
+/plots_local/
 
 # Python cache files
 __pycache__/

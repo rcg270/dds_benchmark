@@ -1,0 +1,15 @@
+[INFO] [1749075415.566590519] [dds_listener]: Starting listener...
+[INFO] [1749075416.570357432] [dds_listener]: [100] CPU: 0.00% | MEM: 79.06 MB
+[INFO] [1749075417.570516447] [dds_listener]: [200] CPU: 121.30% | MEM: 79.09 MB
+[INFO] [1749075418.571246172] [dds_listener]: [300] CPU: 0.00% | MEM: 79.20 MB
+[INFO] [1749075419.572287019] [dds_listener]: [400] CPU: 0.00% | MEM: 78.52 MB
+[INFO] [1749075420.573052478] [dds_listener]: [500] CPU: 0.00% | MEM: 79.52 MB
+[INFO] [1749075421.575334900] [dds_listener]: [600] CPU: 197.60% | MEM: 79.52 MB
+[INFO] [1749075422.571258764] [dds_listener]: [700] CPU: 0.00% | MEM: 79.52 MB
+[INFO] [1749075423.575480783] [dds_listener]: [800] CPU: 0.00% | MEM: 79.65 MB
+[INFO] [1749075424.570732333] [dds_listener]: [900] CPU: 0.00% | MEM: 79.65 MB
+[INFO] [1749075425.572748203] [dds_listener]: [1000] CPU: 0.00% | MEM: 79.65 MB
+[INFO] [1749075425.576411245] [dds_listener]: Samples: 1000 | Avg: 3.824 ms | Min: 1.619 ms | Max: 14.355 ms | Std: 1.150 ms | Throughput: 100.057 msg/s | Dropped: 0 | Drop rate: 0.000% | Duration: 9.994 s
+[INFO] [1749075425.579426399] [dds_listener]: Listener finished.
+RTI Connext DDS Non-commercial license is for academic, research, evaluation and personal use only. USE FOR COMMERCIAL PURPOSES IS PROHIBITED. See RTI_LICENSE.TXT for terms. Download free tools at rti.com/ncl. License issued to Non-Commercial User license@rti.com For non-production use only.
+Expires on 00-jan-00 See www.rti.com for more information.
