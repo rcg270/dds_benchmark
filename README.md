@@ -65,13 +65,11 @@ for local:
     ```bash
     python3 analyze_local_data.py
     python3 plot_local_results.py
-
     ```
 For in-scenario:
     ```bash
     python3 analyze_data.py
     python3 plot_results.py
-
     ```
 
 
