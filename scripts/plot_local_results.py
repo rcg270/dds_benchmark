@@ -1,3 +1,8 @@
+"""
+Plotting script for local DDS benchmark results that are saved in local_benchmark_summary.csv.
+(first run analyze_local_data.py to generate this .csv file)
+"""
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -7,18 +12,12 @@ import os
 def plot_local_benchmark_data(
     summary_csv_path="local_benchmark_summary.csv", output_dir="plots_local"
 ):
-    """
-    Reads local benchmark summary data and generates plots.
-
-    Args:
-        summary_csv_path (str): Path to the CSV file containing local summary data.
-        output_dir (str): Directory to save the generated plots.
-    """
     try:
         df_local = pd.read_csv(summary_csv_path)
     except FileNotFoundError:
         print(
             f"Error: Local summary CSV file not found at '{summary_csv_path}'"
+            "\nPlease run analyze_local_data first "
         )
         return
     except Exception as e:
@@ -31,12 +30,11 @@ def plot_local_benchmark_data(
 
     os.makedirs(output_dir, exist_ok=True)
 
-    # Reformat RMW names for plotting
     df_local["RMW_Implementation"] = df_local["RMW_Implementation"].replace(
         {
             "rmw_cyclonedds_cpp": "CycloneDDS",
-            "rmw_fastrtps_cpp": "Fast RTPS",
-            "rmw_connextdds": "Connext DDS",
+            "rmw_fastrtps_cpp": "FastDDS",
+            "rmw_connextdds": "ConnextDDS",
         }
     )
 

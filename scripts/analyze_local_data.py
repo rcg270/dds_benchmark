@@ -17,15 +17,13 @@ def analyze_local_dds_logs(log_base_dir="local_logs"):
     """
     all_local_results = []
 
-    # Regex for the final summary line
     final_line_pattern = re.compile(
         r"Samples: (\d+) \| Avg: ([-+]?\d+\.\d+) ms \| Min: ([-+]?\d+\.\d+) ms \| "
         r"Max: ([-+]?\d+\.\d+) ms \| Std: ([-+]?\d+\.\d+) ms \| Throughput: (\d+\.\d+) msg/s \| "
         r"Dropped: (\d+) \| Drop rate: (\d+\.\d+)% \| Duration: (\d+\.\d+) s"
     )
 
-    # Regex for periodic CPU/MEM lines
-    # Example: [100] CPU: 0.00% | MEM: 61.15 MB
+    # Example: [100] CPU: 0.00% | MEM: 10.10 MB
     cpu_mem_pattern = re.compile(
         r"\[\d+\] CPU: ([-+]?\d+\.\d+)% \| MEM: ([-+]?\d+\.\d+) MB"
     )
@@ -56,7 +54,6 @@ def analyze_local_dds_logs(log_base_dir="local_logs"):
 
             with open(listener_log_file_path, "r") as f:
                 for line in f:
-                    # Try to match the final summary line
                     final_match = final_line_pattern.search(line)
                     if final_match:
                         data = final_match.groups()
@@ -74,15 +71,12 @@ def analyze_local_dds_logs(log_base_dir="local_logs"):
                             "Duration_s": float(data[8]),
                         }
 
-                    # Try to match periodic CPU/MEM lines
                     cpu_mem_match = cpu_mem_pattern.search(line)
                     if cpu_mem_match:
                         current_cpu_usages.append(float(cpu_mem_match.group(1)))
                         current_mem_usages.append(float(cpu_mem_match.group(2)))
 
-            # Calculate average CPU/MEM for this run, ignoring 0.00% if they represent idle times
-            # A common approach is to only average non-zero CPU if some systems report 0% for idle.
-            # However, for consistency, let's average all captured values.
+            # Calculate average CPU/MEM for this run, ignoring 0.00%
             run_data["Avg_CPU_percent"] = (
                 np.mean(current_cpu_usages) if current_cpu_usages else 0.0
             )
@@ -90,7 +84,7 @@ def analyze_local_dds_logs(log_base_dir="local_logs"):
                 np.mean(current_mem_usages) if current_mem_usages else 0.0
             )
 
-            if run_data:  # Only add if a final summary was found
+            if run_data:
                 all_local_results.append(run_data)
             else:
                 print(

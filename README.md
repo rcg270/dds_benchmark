@@ -6,22 +6,29 @@ This repository contains benchmarking tools and scripts for evaluating the perfo
 
 - Benchmarking scripts for various DDS vendors
 - Automated test scenarios for throughput and latency
-- Result aggregation and visualization tools
+- Analyze results and visualization tools
 
 ## Getting Started
 
+### Requirements
+-Linux operating system, Ubuntu 22.04 LTS tested.
+-For full functionality, access to Avular's origin one https://avular-robotics.github.io/origin_one/
+
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/dds_benchmark.git
+    git clone https://github.com/rcg270/dds_benchmark.git
     cd dds_benchmark
     ```
 
 2. **Install dependencies:**
-    Install ros2 humble,
-    zenoh-bridge-ros2dds=0.11.0
-    ros-humble-rmw-cyclonedds-cp
+    Install ros2 humble: https://docs.ros.org/en/humble/Installation.html
+    ```bash
+    sudo apt install zenoh-bridge-ros2dds=0.11.0
+    sudo apt install ros-humble-rmw-cyclonedds-cp
+    ```
 
-    Optionally uncomment GurumDDS and connextDDS installation
+
+    Optionally, GurumDDS or connextDDS installation.
 
 3. **Run a benchmark:**
     To run a local benchmark:

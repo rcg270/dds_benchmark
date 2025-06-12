@@ -15,7 +15,6 @@ def analyze_monitor_logs(log_base_dir="logs"):
     """
     all_final_results = []
 
-    # Regex to parse the final summary line
     final_line_pattern = re.compile(
         r"\[Final\] Samples: (\d+) \| Avg Latency: ([-+]?\d+\.\d+) ms \| "
         r"Min Latency: ([-+]?\d+\.\d+) ms \| Max Latency: ([-+]?\d+\.\d+) ms \| "
@@ -56,14 +55,14 @@ def analyze_monitor_logs(log_base_dir="logs"):
                         f.readlines()
                     )
                     for _, line in enumerate(log_content):
-                        # Try to match the final summary line
+                        # match the final summary line
                         final_match = final_line_pattern.search(line)
                         if final_match:
                             data = final_match.groups()
                             result = {
                                 "RMW_Implementation": rmw_impl,
                                 "Topic": topic_dir.replace("_", "/"),
-                                "Timestamp_Run": timestamp_dir,  # Unique identifier for this run
+                                "Timestamp_Run": timestamp_dir,
                                 "Samples": int(data[0]),
                                 "Avg_Latency_ms": float(data[1]),
                                 "Min_Latency_ms": float(data[2]),
@@ -75,7 +74,6 @@ def analyze_monitor_logs(log_base_dir="logs"):
                             }
                             all_final_results.append(result)
 
-    # Create DataFrames
     result_df = (
         pd.DataFrame(all_final_results) if all_final_results else pd.DataFrame()
     )
@@ -89,14 +87,14 @@ if __name__ == "__main__":
     Standard structure is:
     ./logs
     """
-    log_base_dir = "./ethernet_logs/logs"
+    log_base_dir = "./logs"
 
     results = analyze_monitor_logs(log_base_dir=log_base_dir)
 
     if not results.empty:
         print("\n--- Benchmark Results (Summary) ---")
         print(results.to_string())
-        results.to_csv("benchmark_ethernet_summary.csv", index=False)
+        results.to_csv("benchmark_summary.csv", index=False)
         print("\nAggregated results saved to benchmark_summary.csv")
     else:
         print("No aggregated data found to display or save.")

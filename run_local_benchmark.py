@@ -1,6 +1,5 @@
 """
-run_dds_benchmark.py
-Main file to test different rmw_implementations, creating ros2
+Main file to locally test different rmw_implementations, creating ros2
 talker and listener nodes and tracking performance.
 """
 
@@ -97,7 +96,7 @@ def main():
     for rmw in rmw_implementations:
         for i in range(1, num_local_runs + 1):
             run_with_rmw(rmw, i)
-            time.sleep(3)  # Small delay between runs to ensure processes terminate cleanly
+            time.sleep(3)
 
 
 if __name__ == "__main__":

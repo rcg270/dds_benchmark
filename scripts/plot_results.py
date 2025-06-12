@@ -1,6 +1,6 @@
 """
 Plotting script for DDS benchmark results that are saved in benchmark_summary.csv.
-(first run analyze_data.py to generate this file)
+(first run analyze_data.py to generate this .csv file)
 """
 
 import pandas as pd
@@ -13,7 +13,8 @@ def plot_benchmark_data(summary_csv_path="benchmark_summary.csv", output_dir="pl
     try:
         df_summary = pd.read_csv(summary_csv_path)
     except FileNotFoundError:
-        print(f"Error: Summary CSV file not found at '{summary_csv_path}'")
+        print(f"Error: Summary CSV file not found at '{summary_csv_path}'",
+              "\nPlease run analyze_data.py first.")
         return
     except Exception as e:
         print(f"Error reading CSV file: {e}")
@@ -25,10 +26,9 @@ def plot_benchmark_data(summary_csv_path="benchmark_summary.csv", output_dir="pl
 
     os.makedirs(output_dir, exist_ok=True)
 
-    # Reformat RMW names for plotting
     df_summary['RMW_Implementation'] = df_summary['RMW_Implementation'].replace({
         'rmw_cyclonedds_cpp': 'CycloneDDS',
-        'rmw_fastrtps_cpp': 'Fast RTPS'
+        'rmw_fastrtps_cpp': 'FastDDS'
     })
 
     topics = df_summary['Topic'].unique()
@@ -211,5 +211,5 @@ def plot_benchmark_data(summary_csv_path="benchmark_summary.csv", output_dir="pl
 
 if __name__ == "__main__":
     # example use:
-    plot_benchmark_data(summary_csv_path="benchmark_ethernet_summary.csv",
-                        output_dir="plots_ethernet")
+    plot_benchmark_data(summary_csv_path="benchmark_summary.csv",
+                        output_dir="plots")

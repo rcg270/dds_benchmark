@@ -124,14 +124,14 @@ class ROS2Monitor(Node):
         hz = self.count / elapsed if elapsed > 0 else 0
 
         bw = (
-            (sum(self.msg_sizes) / (1024 * 1024)) / elapsed
+            (sum(self.msg_sizes) / (1024 * 1024)) / elapsed  # MB/s
             if self.msg_sizes and elapsed > 0
             else 0
         )
 
         latencies_ms = (
             np.array(self.latencies) * 1000
-        )  # convert to milliseconds
+        )  # Convert to milliseconds
         latency_stats = {
             "avg": np.mean(latencies_ms) if self.latencies else 0,
             "min": np.min(latencies_ms) if self.latencies else 0,

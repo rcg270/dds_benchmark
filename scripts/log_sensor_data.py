@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-This script logs sensor data from specified ROS topics into JSONL files.
+This helper script logs sensor data from specified ROS topics into JSONL files.
 For extra information.
 """
 

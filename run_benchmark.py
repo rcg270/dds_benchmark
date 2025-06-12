@@ -93,7 +93,7 @@ def main():
             print(f"\nTesting {topic} ({msg_type}) with {rmw_impl} for {test_duration} seconds...")
             process, log_file = run_monitor(rmw_impl, topic, msg_type, test_duration)
             processes.append((process, topic, rmw_impl, log_file))
-            time.sleep(1)  # Give some time between starting each monitor
+            time.sleep(1)
 
     # Wait for all monitor processes to complete
     for process, topic, rmw_impl, log_file in processes:
