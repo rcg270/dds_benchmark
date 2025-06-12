@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Runs a benchmark for different DDS implementations in ROS 2 while connected to
-Avular's Origin One (via Jetson Orin Nano).
+Avular's Origin One via Zenoh bridge.
 """
 import os
 import subprocess
@@ -10,7 +10,7 @@ from datetime import datetime
 import argparse
 
 RMW_IMPLEMENTATIONS = ["rmw_fastrtps_cpp", "rmw_cyclonedds_cpp"]
-# Potential implementations: "rmw_zenoh_cpp", "rmw_connext_cpp", "rmw_gurumdds_cpp"
+# Potential implementations to test: "rmw_zenoh_cpp", "rmw_connext_cpp", "rmw_gurumdds_cpp"
 LOG_DIR = "logs"
 TOPICS_TO_TEST = [
     # High-frequency sensor data
@@ -42,7 +42,7 @@ def run_monitor(rmw_impl, topic_name, msg_type, duration):
     log_file = os.path.join(log_dir, "monitor_output.log")
 
     cmd = [
-        "python3", "run_ros2_monitor.py",
+        "python3", "scripts/run_ros2_monitor.py",
         topic_name,
         "--duration", str(duration),
         "--msg-type", msg_type

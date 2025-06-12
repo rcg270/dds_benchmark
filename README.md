@@ -43,15 +43,29 @@ This repository contains benchmarking tools and scripts for evaluating the perfo
 
 ## Configuration
 
-Benchmark parameters can be adjusted in the `configs/` directory. See `configs/default.yaml` for an example.
+Benchmark parameters for local testing can be adjusted in the run_local_benchmark.py file.
+For in-scenario, the duration in seconds can be adjusted using the -t option:
+    ```bash
+    python3 run_benchmark.py -t=30
+    ```
+
 
 ## Results
 
-Benchmark results are saved in the `results/` directory and can be visualized using the provided scripts.
+Benchmark results are saved in the `logs/` directory and can be visualized using the provided scripts.
+for local:
+    ```bash
+    python3 analyze_local_data.py
+    python3 plot_local_results.py
 
-## Contributing
+    ```
+For in-scenario:
+    ```bash
+    python3 analyze_data.py
+    python3 plot_results.py
 
-Contributions are welcome! Please open issues or submit pull requests.
+    ```
+
 
 ## License
 
